@@ -1,0 +1,7 @@
+{
+  "project": "Rust Mobile Security Auditor Pro",
+  "status": {
+    "audit_type": "basic_information_only",
+    "kernel_information": "Read from Android system"
+  }
+}

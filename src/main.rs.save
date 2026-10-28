@@ -1,0 +1,127 @@
+
+
+
+
+
+
+
+
+use serde_json::{json, Value};
+use std::fs;
+use std::io::Write;
+
+fn generate_report(system_info: &str) -> String {
+    format!(
+        "Rust Mobile Security Auditor Pro\n\
+         System Check: Completed\n\
+         Kernel Information: {}\n",
+        system_info.trim()
+    )
+}
+
+fn validate_json(contents: &str) -> bool {
+    match serde_json::from_str::<Value>(contents) {
+        Ok(value) => {
+            value["project"] == "Rust Mobile Security Auditor Pro"
+                && value["system_check"] == "completed"
+                && value["kernel_information"].is_string()
+                && value["audit_type"] == "basic_information_only"
+        }
+        Err(_) => false,
+    }
+}
+
+fn main() {
+    println!("=== Rust Mobile Security Auditor Pro ===");
+
+    let system_info = fs::read_to_string("/proc/version")
+        .unwrap_or_else(|_| "Unavailable".to_string());
+
+    let report = generate_report(&system_info);
+
+    match fs::File::create("security_report.txt") {
+        Ok(mut file) => {
+            if let Err(e) = file.write_all(report.as_bytes()) {
+                println!("Text report error: {}", e);
+            } else {
+                println!("Text report saved.");
+            }
+        }
+        Err(e) => println!("Text report error: {}", e),
+    }
+
+    let json_report = json!({
+        "project": "Rust Mobile Security Auditor Pro",
+        "system_check": "completed",
+        "kernel_information": system_info.trim(),
+        "audit_type": "basic_information_only"
+    });
+
+    match serde_json::to_string_pretty(&json_report) {
+        Ok(contents) => {
+            match fs::write("security_report.json", &contents) {
+                Ok(()) => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use serde_json::{json, Value};
+use std::fs;
+use std::io::Write;
+
+fn generate_report(system_info: &str) -> String {
+    format!(
+        "Rust Mobile Security Auditor Pro\n\
+         System Check: Completed\n\
+         Kernel Information: {}\n",
+        system_info.trim()
+    )
+}
+
+fn validate_json(contents: &str) -> bool {
+    match serde_json::from_str::<Value>(contents) {
+        Ok(value) => {
+            value["project"] == "Rust Mobile Security Auditor Pro"
+                && value["system_check"] == "completed"
+                && value["kernel_information"].is_string()
+                && value["audit_type"] == "basic_information_only"
+        }
+        Err(_) => false,
+    }
+}
+
+fn main() {
+    println!("=== Rust Mobile Security Auditor Pro ===");
+
+    let system_info = fs::read_to_string("/proc/version")
+        .unwrap_or_else(|_| "Unavailable".to_string());
+
+    let report = generate_report(&system_info);
+
+    match fs::File::create("security_report.txt") {
+        Ok(mut file) => {
+            if let Err(e) = file.write_all(report.as_bytes()) {
+                println!("Text report error: {}", e);
+            } else {
+                println!("Text report saved.");
+            }
+        }
+        Err(e) => println!("Text report error: {}", e),
+    }
+
+    let json_report = json!({
+        "project": "Rust Mobile Security Auditor Pro",
+        "system_check": "completed",
+   
