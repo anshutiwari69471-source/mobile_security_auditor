@@ -1,1 +1,5 @@
-/target
+target/
+security_report.*
+audit_history/
+*.backup
+*.save

@@ -1,3 +1,0 @@
-Score: 80%
-Risk: LOW
-Kernel: Linux 5.10
